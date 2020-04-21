@@ -1,0 +1,1 @@
+module.exports.DepartmentService = require('./class/DepartmentService');

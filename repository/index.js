@@ -1,0 +1,1 @@
+module.exports.DepartmentRepository = require('./class/DepartmentRepository');
