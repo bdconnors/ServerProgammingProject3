@@ -1,28 +1,44 @@
-module.exports = {
-        COMPANY:[
-            {method:'delete',path:'/CompanyServices/company',endpoint:'delete'},
-        ],
-        DEPARTMENT:[
+module.exports = [
+    {
+        controller:"CompanyController",
+        service:"CompanyService",
+        repository:"CompanyRepository",
+        paths:[{method:'delete',path:'/CompanyServices/company',endpoint:'index'}]
+    },
+    {
+        controller:"DepartmentController",
+        service:"DepartmentService",
+        repository:"DepartmentRepository",
+        paths:[
             {method:'get',path:'/CompanyServices/departments',endpoint:'index'},
             {method:'post',path:'/CompanyServices/department',endpoint:'create'},
             {method:'get',path:'/CompanyServices/department',endpoint:'retrieve'},
             {method:'put',path:'/CompanyServices/department',endpoint:'update'},
             {method:'delete',path:'/CompanyServices/department',endpoint:'delete'}
-
-        ],
-        EMPLOYEE:[
+        ]
+    },
+    {
+        controller:"EmployeeController",
+        service:"EmployeeService",
+        repository:"EmployeeRepository",
+        paths:[
             {method:'get',path:'/CompanyServices/employees',endpoint:'index'},
             {method:'post',path:'/CompanyServices/employee',endpoint:'create'},
             {method:'get',path:'/CompanyServices/employee',endpoint:'retrieve'},
             {method:'put',path:'/CompanyServices/employee',endpoint:'update'},
             {method:'delete',path:'/CompanyServices/employee',endpoint:'delete'}
-        ],
-        TIMECARD:[
+        ]
+    },
+    {
+        controller:"TimecardController",
+        service:"TimecardService",
+        repository:"TimecardRepository",
+        paths:[
             {method:'get',path:'/CompanyServices/timecards',endpoint:'index'},
             {method:'post',path:'/CompanyServices/timecard',endpoint:'create'},
             {method:'get',path:'/CompanyServices/timecard',endpoint:'retrieve'},
             {method:'put',path:'/CompanyServices/timecard',endpoint:'update'},
             {method:'delete',path:'/CompanyServices/timecard',endpoint:'delete'}
         ]
-
-};
+    }
+];

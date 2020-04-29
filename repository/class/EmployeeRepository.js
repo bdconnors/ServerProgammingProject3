@@ -1,7 +1,15 @@
 const Repository = require('./Repository');
 class EmployeeRepository extends Repository{
-    constructor(data){
-        super(data);
+    constructor(){
+        super();
+    }
+    async all(values){
+        await this.connect(values.company);
+        return await this.data.getAllEmployee(values.company);
+    }
+    async retrieve(values){
+        await this.connect(values.company);
+        return await this.data.getEmployee(values.id);
     }
     make(values){
         return this.data.Employee(values.id,

@@ -1,8 +1,8 @@
+const DataLayer = require('../../lib/companydata');
 class Repository {
 
-    constructor(data){
-        this.data = data;
-    }
+    constructor(){}
+
     async all(){
         throw new Error('Please override all function from parent class Repository');
     }
@@ -17,6 +17,9 @@ class Repository {
     }
     async delete(values){
         throw new Error('Please override delete function from parent class Repository');
+    }
+    async connect(company){
+        this.data = new DataLayer(company);
     }
     makeMany(items){
         let results = [];

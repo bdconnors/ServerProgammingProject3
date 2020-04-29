@@ -1,15 +1,17 @@
 const Repository = require('./Repository');
 class DepartmentRepository extends Repository{
-    constructor(data){
-        super(data);
+    constructor(){
+        super();
     }
     async all(values){
+        await this.connect(values.company);
         return await this.data.getAllDepartment(values.company);
     }
     async retrieve(values){
-       const company = values.company;
-       const id = values.id;
-       return await this.data.getDepartment(company,id);
+        await this.connect(values.company);
+        const company = values.company;
+        const id = values.id;
+        return await this.data.getDepartment(company,id);
     }
     make(values){
         return this.data.Department(values.id,

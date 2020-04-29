@@ -8,8 +8,7 @@ const svc = require('../../service');
 const repo = require('../../repository');
 
 class Server {
-    constructor(dataLayer){
-        this.dataLayer = dataLayer;
+    constructor(){
         this.instance = express();
         this.router = express.Router();
         this.repo = [];
@@ -21,35 +20,22 @@ class Server {
      * **/
     start(){
         this.applyMiddleWare();
-        this.init();
+        this.initRoutes();
         this.instance.listen(process.env.SERVER_PORT,()=>{
             console.log(`Server started on port ${process.env.SERVER_PORT}.`);
             console.log(`Navigate to http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`);
         });
     }
-    init(){
-        this.initRepositories();
-        this.initServices();
-        this.initControllers();
-    }
-    initRepositories(){
-        const departmentRepo = new repo.DepartmentRepository(this.dataLayer);
-        this.register("repo","DEPARTMENT",departmentRepo);
-
-    }
-    initServices(){
-        const departmentService = new svc.DepartmentService(this.repo["DEPARTMENT"]);
-        this.register("svc","DEPARTMENT",departmentService);
-    }
-    initControllers(){
-        const departmentController = new ctrl.DepartmentController(this.svc["DEPARTMENT"]);
-        this.register("ctrl","DEPARTMENT",departmentController);
-    }
-    register(type,label,component) {
-        if(type === "ctrl"){
-            this.setRoutes(component,routes[label]);
-        }
-        this[type][label] = component;
+    initRoutes(){
+        routes.forEach((route)=>{
+            const repository = new repo[route.repository]();
+            this.repo.push(repo);
+            const service = new svc[route.service](repository);
+            this.svc.push(svc);
+            const controller = new ctrl[route.controller](service);
+            this.ctrl.push(controller);
+            this.setRoutes(controller,route.paths);
+        });
     }
     setRoutes(controller,routes){
         routes.forEach((route)=>{
