@@ -3,25 +3,28 @@ class DepartmentController extends Controller{
     constructor(service) {
         super(service);
     }
-    async index(req,res){
-        const departments = await this.service.getAll(req.query.company);
+    index(req,res){
+        const departments = this.service.retrieveAll(req.query.company);
         res.send(departments);
     }
     create(req,res){
-
-
+        const department = this.service.create(req.body);
+        console.log(department);
+        res.send(department);
     }
-    async retrieve(req,res){
-        const department = await this.service.get(req.query.company,req.query.dept_id);
+    retrieve(req,res){
+        const department = this.service.retrieve(req.query.company,req.query.dept_id);
         console.log(department);
         res.send(department);
 
     }
     update(req,res){
-
+        const result = this.service.update(req.body);
+        res.send(result);
     }
     delete(req,res){
-
+        const result = this.service.delete(req.query.company,req.query.dept_id);
+        res.send(result);
     }
 }
 module.exports = DepartmentController;

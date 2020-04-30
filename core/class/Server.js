@@ -5,13 +5,12 @@ const cookieParser = require('cookie-parser');
 const routes = require('../../config/routes');
 const ctrl = require('../../controller');
 const svc = require('../../service');
-const repo = require('../../repository');
+const DataAccess = require('./DataAccess');
 
 class Server {
     constructor(){
         this.instance = express();
         this.router = express.Router();
-        this.repo = [];
         this.svc = [];
         this.ctrl = [];
     }
@@ -28,9 +27,7 @@ class Server {
     }
     initRoutes(){
         routes.forEach((route)=>{
-            const repository = new repo[route.repository]();
-            this.repo.push(repo);
-            const service = new svc[route.service](repository);
+            const service = new svc[route.service](new DataAccess());
             this.svc.push(svc);
             const controller = new ctrl[route.controller](service);
             this.ctrl.push(controller);

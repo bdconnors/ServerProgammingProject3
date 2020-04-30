@@ -3,8 +3,10 @@ class CompanyController extends Controller{
     constructor(service) {
         super(service);
     }
-    async index(req,res){
-
+    index(req,res){
+        const result = this.service.delete(req.query.company);
+        console.log(result);
+        res.send(result);
     }
 }
 module.exports = CompanyController;

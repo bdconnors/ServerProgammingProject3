@@ -2,13 +2,11 @@ module.exports = [
     {
         controller:"CompanyController",
         service:"CompanyService",
-        repository:"CompanyRepository",
         paths:[{method:'delete',path:'/CompanyServices/company',endpoint:'index'}]
     },
     {
         controller:"DepartmentController",
         service:"DepartmentService",
-        repository:"DepartmentRepository",
         paths:[
             {method:'get',path:'/CompanyServices/departments',endpoint:'index'},
             {method:'post',path:'/CompanyServices/department',endpoint:'create'},
@@ -20,7 +18,6 @@ module.exports = [
     {
         controller:"EmployeeController",
         service:"EmployeeService",
-        repository:"EmployeeRepository",
         paths:[
             {method:'get',path:'/CompanyServices/employees',endpoint:'index'},
             {method:'post',path:'/CompanyServices/employee',endpoint:'create'},
@@ -32,7 +29,6 @@ module.exports = [
     {
         controller:"TimecardController",
         service:"TimecardService",
-        repository:"TimecardRepository",
         paths:[
             {method:'get',path:'/CompanyServices/timecards',endpoint:'index'},
             {method:'post',path:'/CompanyServices/timecard',endpoint:'create'},

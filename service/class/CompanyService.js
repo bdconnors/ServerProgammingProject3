@@ -1,10 +1,17 @@
 const Service = require('./Service');
 class CompanyService extends Service{
-    constructor(repo){
-        super(repo);
+    constructor(data){
+        super(data);
     }
-    async deleteCompany(values){
+    delete(company){
+        try{
+            const result = this.data.execute(company,"Company","delete",[company]);
+            console.log(result);
+            return {success:`Company ${company} was deleted`};
 
+        }catch (e) {
+            return e;
+        }
     }
 
 }
