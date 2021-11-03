@@ -14,7 +14,7 @@
     "express": "^4.17.1",
     "sync-mysql": "^3.0.1",
     "uuid": "^7.0.2",
-    "validator": "^13.0.0",
+    "validator": "^13.7.0",
     "xss-filters": "^1.2.7"
   },
   "author": "Brandon Connors <bdc5435@rit.edu>",
